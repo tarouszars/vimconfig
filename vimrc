@@ -40,11 +40,12 @@ set relativenumber
 
 
 let mapleader = ","
-nnoremap <leader>re :execute "edit " . $MYVIMRC<CR>
+nnoremap <leader>re :execute "edit ~/.vim/vimrc"<CR>
 nnoremap <leader>rs :execute "source " . $MYVIMRC<CR>
 nnoremap <leader>rn :if exists("g:syntax_on") <CR> syntax off <CR> set relativenumber <CR> else <CR> set relativenumber <CR> syntax enable<CR> endif<CR><CR>
 nnoremap <leader>h :set hlsearch! <CR>
 nnoremap <Leader>f :set nomore<Bar>:ls<Bar>:set more<CR>:b<Space>
+nnoremap C :! ctags <CR>
 
 nmap <leader>l :set list!<CR>
 set listchars=tab:▸\ ,eol:¬
@@ -101,11 +102,11 @@ if executable('ag')
 endif
 
 " bind K to grep word under cursor
-nnoremap K :silent<CR>:grep! "\b<C-R><C-W>\b"<CR>:copen 20<CR>
+nnoremap K :silent<CR>:grep! "\b<C-R><C-W>\b"<CR>:copen 30\|wincmd J<CR>
 " nnoremap K :silent<CR>:grep! "\b<C-R><C-W>\b"<CR>:only<CR>:vert bo copen 100<CR>
 
 " bind \ (backward slash) to grep shortcut
-command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|copen 30|wincmd J|redraw!
 nnoremap \ :Ag<SPACE>
 nnoremap gj :cn<CR>
 nnoremap gk :cp<CR>
